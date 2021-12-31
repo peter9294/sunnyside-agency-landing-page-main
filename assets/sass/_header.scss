@@ -1,0 +1,227 @@
+@use "./mixin/image-mixin";
+
+header {
+  position: relative;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  @include image-mixin.div-same-size-as-background-img(
+    "./assets/images/desktop/image-header.jpg",
+    55.56%
+  );
+
+  h1 {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 10vw;
+    margin-top: 40px;
+    text-align: center;
+    color: white;
+    letter-spacing: 5px;
+    font-size: 4vw;
+  }
+}
+nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 40px;
+}
+.nav__menu {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 20px;
+  button {
+    color: white;
+    font-size: 1.2rem;
+    padding: 18px 30px;
+    border-radius: 30px;
+    border: none;
+    background-color: transparent;
+    transition: 0.3s ease-in-out;
+    width: fit-content;
+    cursor: pointer;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.349);
+    }
+  }
+}
+
+#contact-btn {
+  color: black;
+  background-color: white;
+  border: none;
+  transition: 0.3s ease-in-out;
+  font-family: "Fraunces", serif;
+  cursor: pointer;
+  &:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.349);
+  }
+}
+
+// arrow
+.arrow {
+  position: absolute;
+  top: 52%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  .shaft {
+    width: 8vw; //shaft size
+    height: 0.5vw; //shaft weight
+    border-radius: 20px;
+    background-color: white;
+    display: block;
+    position: relative;
+    transform: rotate(90deg);
+    &::before,
+    &::after {
+      width: 1.8vw; //head size
+      height: 0.5vw; //head weight
+      background-color: white;
+      border-radius: 20px 0 0 20px;
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0.1vw;
+    }
+    &::before {
+      transform: rotate(40deg);
+      transform-origin: top right;
+    }
+
+    &::after {
+      transform: rotate(-40deg);
+      transform-origin: bottom right;
+    }
+  }
+}
+
+// Animation
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+  .bar1,
+  .bar2,
+  .bar3 {
+    width: 30px;
+    height: 3px;
+    background-color: rgba(255, 255, 255, 0.329);
+    margin: 6px 0;
+    transition: 0.4s;
+  }
+
+  &.change {
+    .bar1 {
+      transform: rotate(-45deg) translate(-5px, 5px);
+    }
+    .bar2 {
+      opacity: 0;
+    }
+    .bar3 {
+      transform: rotate(45deg) translate(-8px, -8px);
+    }
+  }
+}
+
+// media query
+
+@media (max-width: 900px) {
+  .nav__menu {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    top: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 0 40px;
+    align-items: center;
+    padding: 30px 0;
+    transform: scale(0);
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+    transform-origin: 100% 0;
+    &::after {
+      content: "";
+      position: absolute;
+      border-top: 30px solid transparent;
+      border-bottom: 30px solid transparent;
+      border-right: 30px solid white;
+      top: -8%;
+      right: 0;
+    }
+
+    button {
+      color: rgb(150, 150, 150);
+      font-size: 1rem;
+      &:hover {
+        color: black;
+      }
+    }
+    &.change {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  .hamburger {
+    display: inline-block;
+    margin: 10px 0;
+  }
+
+  #contact-btn {
+    background-color: hsl(51, 100%, 49%);
+    padding: 20px 30px;
+    border-radius: 40px;
+    &:hover {
+      background-color: black;
+      color: white;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  header {
+    @include image-mixin.div-same-size-as-background-img(
+      "./assets/images/mobile/image-header.jpg",
+      143.47%
+    );
+
+    h1 {
+      top: 20vw;
+      font-size: 11vw;
+    }
+  }
+  nav {
+    padding: 20px 20px;
+  }
+  .nav__menu {
+    left: 0;
+    width: inherit;
+    margin: 0 20px;
+  }
+
+  .arrow {
+    top: 63%;
+    .shaft {
+      width: 33vw; //shaft size
+      height: 1.5vw; //shaft weight
+      
+      &::before,
+      &::after {
+        width: 7vw; //head size
+        height: 1.5vw; //head weight
+        right: 0.5vw;
+      }
+    }
+  }
+}

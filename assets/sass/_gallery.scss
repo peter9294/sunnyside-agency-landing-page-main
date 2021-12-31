@@ -1,0 +1,44 @@
+@mixin image($url) {
+  background-image: url($url);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 30vw;
+
+  .milk-bottle {
+    @include image("./assets/images/desktop/image-gallery-milkbottles.jpg");
+  }
+  .orange-on-the-plate {
+    @include image("./assets/images/desktop/image-gallery-orange.jpg");
+  }
+  .cone {
+    @include image("./assets/images/desktop/image-gallery-cone.jpg");
+  }
+  .sugar-cube {
+    @include image("./assets/images/desktop/image-gallery-sugarcubes.jpg");
+  }
+}
+
+@media (max-width: 900px) {
+  $grid-row: 50vw;
+  .gallery {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: $grid-row $grid-row;
+  }
+  .milk-bottle {
+    @include image("./assets/images/mobile/image-gallery-milkbottles.jpg");
+  }
+  .orange-on-the-plate {
+    @include image("./assets/images/mobile/image-gallery-orange.jpg");
+  }
+  .cone {
+    @include image("./assets/images/mobile/image-gallery-cone.jpg");
+  }
+  .sugar-cube {
+    @include image("./assets/images/mobile/image-gallery-sugarcubes.jpg");
+  }
+}

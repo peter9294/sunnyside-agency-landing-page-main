@@ -1,0 +1,31 @@
+@use "./assets/sass/includes";
+
+::selection {
+  background-color: #ffa400;
+}
+
+body {
+  color: black;
+  margin: 0;
+  font-size: 1.125rem;
+  font-family: "Barlow", sans-serif;
+}
+.attribution {
+  font-size: 11px;
+  text-align: center;
+  a {
+    color: hsl(228, 45%, 44%);
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Fraunces", serif;
+}
+
+h2 {
+  color: hsl(212, 27%, 19%);
+}
